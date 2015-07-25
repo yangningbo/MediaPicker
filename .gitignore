@@ -1,0 +1,6 @@
+.apt_generated
+.build
+deploys
+gen
+bin
+proguard

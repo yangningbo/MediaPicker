@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/media_tool_bar_height" >
+
+        <fragment
+            android:id="@+id/media_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.hello1987.mediapicker.ui.fragment.MediaFragment" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/album_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#c0000000"
+        android:paddingBottom="@dimen/media_tool_bar_height"
+        android:paddingTop="@dimen/media_tool_bar_height"
+        android:visibility="gone" >
+
+        <fragment
+            android:id="@+id/album_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.hello1987.mediapicker.ui.fragment.AlbumFragment" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/media_tool_bar_height"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/media_tool_bar_bg" >
+
+        <TextView
+            android:id="@+id/album_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/pulldown_bg"
+            android:gravity="center"
+            android:paddingBottom="4dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="16dp"
+            android:paddingTop="4dp"
+            android:text="图片和视频"
+            android:textColor="@color/color6_black_normal"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/preview_tv"
+            android:background="@color/color6_black_normal" />
+
+        <TextView
+            android:id="@+id/preview_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:enabled="false"
+            android:padding="4dp"
+            android:text="预览"
+            android:textColor="@color/color6_black_normal"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
