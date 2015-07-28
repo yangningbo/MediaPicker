@@ -104,8 +104,6 @@ public class MediaFragment extends Fragment implements OnMediasLoadedListener,
 			}
 		}
 
-		loadMedias();
-
 		return view;
 	};
 

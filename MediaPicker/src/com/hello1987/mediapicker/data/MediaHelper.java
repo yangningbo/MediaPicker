@@ -53,7 +53,15 @@ public class MediaHelper {
 		Collections.sort(albums, new Comparator<Album>() {
 			@Override
 			public int compare(Album a, Album b) {
-				return b.getDateTaken() - a.getDateTaken();
+				long d1 = a.getDateTaken();
+				long d2 = b.getDateTaken();
+				if (d2 > d1) {
+					return 1;
+				} else if (d2 == d1) {
+					return 0;
+				} else {
+					return -1;
+				}
 			}
 		});
 
@@ -170,7 +178,15 @@ public class MediaHelper {
 		Collections.sort(medias, new Comparator<Media>() {
 			@Override
 			public int compare(Media a, Media b) {
-				return b.getDateTaken() - a.getDateTaken();
+				long d1 = a.getDateTaken();
+				long d2 = b.getDateTaken();
+				if (d2 > d1) {
+					return 1;
+				} else if (d2 == d1) {
+					return 0;
+				} else {
+					return -1;
+				}
 			}
 		});
 
