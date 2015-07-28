@@ -2,18 +2,32 @@ package com.hello1987.mediapicker.model;
 
 public class Album {
 
+	private int bucketId;
 	private String bucketName;
 	private String data;
-	private int dateTaken;
+	private long dateTaken;
 	private int size;
 	private boolean isChecked;
 
-	public Album(String bucketName, String data, int dateTaken) {
+	public Album(String bucketName, String data, long dateTaken) {
+		this(-1, bucketName, data, dateTaken);
+	}
+
+	public Album(int bucketId, String bucketName, String data, long dateTaken) {
+		this.bucketId = bucketId;
 		this.bucketName = bucketName;
 		this.data = data;
 		this.dateTaken = dateTaken;
 		this.size = 1;
 		this.isChecked = false;
+	}
+
+	public int getBucketId() {
+		return bucketId;
+	}
+
+	public void setBucketId(int bucketId) {
+		this.bucketId = bucketId;
 	}
 
 	public String getBucketName() {
@@ -32,7 +46,7 @@ public class Album {
 		this.data = data;
 	}
 
-	public int getDateTaken() {
+	public long getDateTaken() {
 		return dateTaken;
 	}
 

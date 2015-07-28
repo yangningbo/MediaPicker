@@ -6,7 +6,7 @@ public class ByteUtil {
 	public static final int MB = 1024 * KB;
 	public static final int GB = 1024 * MB;
 
-	public static String format(int size) {
+	public static String format(long size) {
 		if (size < KB) {// <1k
 			return String.format("%d B", size);
 		} else if (size < MB) {// <1m

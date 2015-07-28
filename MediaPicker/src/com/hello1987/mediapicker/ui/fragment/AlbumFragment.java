@@ -91,8 +91,6 @@ public class AlbumFragment extends Fragment implements OnAlbumsLoadedListener,
 	@Override
 	public void onAlbumsLoaded(List<Album> albums) {
 		if (albums.size() > 0) {
-			// Album album = ;
-
 			Album firstAlbum = null;
 			if (MediaPickerConstants.SHOW_IMAGE
 					&& MediaPickerConstants.SHOW_VIDEO) {

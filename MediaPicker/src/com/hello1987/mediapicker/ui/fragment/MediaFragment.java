@@ -111,8 +111,8 @@ public class MediaFragment extends Fragment implements OnMediasLoadedListener,
 		mAsyncMediaHelper.loadMedias(mMediaType, this);
 	}
 
-	private void loadMedias(String bucketName) {
-		mAsyncMediaHelper.loadMedias(bucketName, mMediaType, this);
+	private void loadMedias(int bucketId) {
+		mAsyncMediaHelper.loadMedias(bucketId, mMediaType, this);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class MediaFragment extends Fragment implements OnMediasLoadedListener,
 		if (album == null) {
 			loadMedias();
 		} else {
-			loadMedias(album.getBucketName());
+			loadMedias(album.getBucketId());
 		}
 	}
 

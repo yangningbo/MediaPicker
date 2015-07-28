@@ -78,7 +78,7 @@ public class AsyncMediaHelper {
 	 * @param bucketName
 	 * @return
 	 */
-	public void loadMedias(final String bucketName, final int type,
+	public void loadMedias(final int bucketId, final int type,
 			final OnMediasLoadedListener listener) {
 		final Handler handler = new MediaHandler(mContext) {
 			@SuppressWarnings("unchecked")
@@ -92,7 +92,7 @@ public class AsyncMediaHelper {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				List<Media> medias = mMediaHelper.loadMedias(bucketName, type);
+				List<Media> medias = mMediaHelper.loadMedias(bucketId, type);
 				Message msg = Message.obtain();
 				msg.obj = medias;
 				handler.sendMessage(msg);

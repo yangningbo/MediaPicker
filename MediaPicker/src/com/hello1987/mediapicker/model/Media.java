@@ -8,8 +8,8 @@ public class Media implements Serializable {
 
 	private String data;
 	private int mediaType;
-	private int dateTaken;
-	private int size;
+	private long dateTaken;
+	private long size;
 
 	public Media(String data) {
 		this(data, 0);
@@ -19,7 +19,7 @@ public class Media implements Serializable {
 		this(data, mediaType, 0, 0);
 	}
 
-	public Media(String data, int mediaType, int dateTaken, int size) {
+	public Media(String data, int mediaType, long dateTaken, long size) {
 		this.data = data;
 		this.mediaType = mediaType;
 		this.dateTaken = dateTaken;
@@ -42,7 +42,7 @@ public class Media implements Serializable {
 		this.mediaType = mediaType;
 	}
 
-	public int getDateTaken() {
+	public long getDateTaken() {
 		return dateTaken;
 	}
 
@@ -50,7 +50,7 @@ public class Media implements Serializable {
 		this.dateTaken = dateTaken;
 	}
 
-	public int getSize() {
+	public long getSize() {
 		return size;
 	}
 

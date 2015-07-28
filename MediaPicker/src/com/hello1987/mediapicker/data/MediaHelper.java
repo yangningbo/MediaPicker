@@ -94,9 +94,9 @@ public class MediaHelper {
 							.getColumnIndex(ImageColumns.BUCKET_DISPLAY_NAME));//
 					String data = cursor.getString(cursor
 							.getColumnIndex(ImageColumns.DATA));//
-					int dateTaken = cursor.getInt(cursor
+					long dateTaken = cursor.getLong(cursor
 							.getColumnIndex(ImageColumns.DATE_TAKEN));//
-					album = new Album(bucketName, data, dateTaken);
+					album = new Album(bucketId, bucketName, data, dateTaken);
 
 					albums.put(bucketId, album);
 				} else {
@@ -135,9 +135,9 @@ public class MediaHelper {
 							.getColumnIndex(VideoColumns.BUCKET_DISPLAY_NAME));//
 					String data = cursor.getString(cursor
 							.getColumnIndex(VideoColumns.DATA));//
-					int dateTaken = cursor.getInt(cursor
+					long dateTaken = cursor.getLong(cursor
 							.getColumnIndex(VideoColumns.DATE_TAKEN));//
-					album = new Album(bucketName, data, dateTaken);
+					album = new Album(bucketId, bucketName, data, dateTaken);
 
 					albumSet.put(bucketId, album);
 				} else {
@@ -155,7 +155,7 @@ public class MediaHelper {
 	 * @return
 	 */
 	public List<Media> loadMedias(int type) {
-		return loadMedias(null, type);
+		return loadMedias(-1, type);
 	}
 
 	/**
@@ -164,15 +164,15 @@ public class MediaHelper {
 	 * @param bucketName
 	 * @return
 	 */
-	public List<Media> loadMedias(String bucketName, int type) {
+	public List<Media> loadMedias(int bucketId, int type) {
 		List<Media> medias = new ArrayList<Media>();
 
 		if ((type & MediaType.MEDIA_TYPE_IMAGE) != 0) {
-			updateMediasFromImagesTable(bucketName, medias);
+			updateMediasFromImagesTable(bucketId, medias);
 		}
 
 		if ((type & MediaType.MEDIA_TYPE_VIDEO) != 0) {
-			updateMediasFromVideoTable(bucketName, medias);
+			updateMediasFromVideoTable(bucketId, medias);
 		}
 
 		Collections.sort(medias, new Comparator<Media>() {
@@ -193,16 +193,15 @@ public class MediaHelper {
 		return medias;
 	}
 
-	private void updateMediasFromImagesTable(String bucketName,
-			List<Media> medias) {
+	private void updateMediasFromImagesTable(int bucketId, List<Media> medias) {
 		String selection = ImageColumns.SIZE + " >= ?";
 		String[] selectionArgs = new String[] { String.valueOf(1024 * 10) };
 
-		if (bucketName != null) {
+		if (bucketId != -1) {
 			selection = ImageColumns.SIZE + " >= ? and "
-					+ ImageColumns.BUCKET_DISPLAY_NAME + " = ?";
+					+ ImageColumns.BUCKET_ID + " = ?";
 			selectionArgs = new String[] { String.valueOf(1024 * 10),
-					bucketName };
+					String.valueOf(bucketId) };
 		}
 
 		Cursor cursor = mResolver.query(//
@@ -224,7 +223,7 @@ public class MediaHelper {
 			while (cursor.moveToNext()) {
 				String data = cursor.getString(cursor
 						.getColumnIndex(ImageColumns.DATA));//
-				int dateTaken = cursor.getInt(cursor
+				long dateTaken = cursor.getLong(cursor
 						.getColumnIndex(ImageColumns.DATE_TAKEN));//
 				int size = cursor.getInt(cursor
 						.getColumnIndex(ImageColumns.SIZE));//
@@ -239,18 +238,17 @@ public class MediaHelper {
 		}
 	}
 
-	private void updateMediasFromVideoTable(String bucketName,
-			List<Media> medias) {
+	private void updateMediasFromVideoTable(int bucketId, List<Media> medias) {
 		String selection = VideoColumns.SIZE + " >= ? and " + VideoColumns.SIZE
 				+ " <= ?";
 		String[] selectionArgs = new String[] { String.valueOf(1024 * 10),
 				String.valueOf(1024 * 1024 * 200) };
 
-		if (bucketName != null) {
+		if (bucketId != -1) {
 			selection = VideoColumns.SIZE + " >= ? and " + VideoColumns.SIZE
-					+ " <= ? and " + VideoColumns.BUCKET_DISPLAY_NAME + " = ?";
+					+ " <= ? and " + VideoColumns.BUCKET_ID + " = ?";
 			selectionArgs = new String[] { String.valueOf(1024 * 10),
-					String.valueOf(1024 * 1024 * 200), bucketName };
+					String.valueOf(1024 * 1024 * 200), String.valueOf(bucketId) };
 		}
 
 		Cursor cursor = mResolver.query(Video.Media.EXTERNAL_CONTENT_URI,// uri
@@ -271,7 +269,7 @@ public class MediaHelper {
 			while (cursor.moveToNext()) {
 				String data = cursor.getString(cursor
 						.getColumnIndex(VideoColumns.DATA));//
-				int dateTaken = cursor.getInt(cursor
+				long dateTaken = cursor.getLong(cursor
 						.getColumnIndex(VideoColumns.DATE_TAKEN));//
 				int size = cursor.getInt(cursor
 						.getColumnIndex(VideoColumns.SIZE));//
