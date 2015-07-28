@@ -7,6 +7,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -150,6 +151,18 @@ public class MediaPreviewActivity extends Activity implements
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		// fix android formatted title bug
+		// http://stackoverflow.com/questions/7658725/android-java-lang-illegalargumentexception-invalid-payload-item-type/
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2
+				&& item.getTitleCondensed() != null) {
+			item.setTitleCondensed(item.getTitleCondensed().toString());
+		}
+
+		return super.onMenuItemSelected(featureId, item);
 	}
 
 	@Override
