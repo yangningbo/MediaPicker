@@ -34,6 +34,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:button="@drawable/selector_check_bg"
             android:text="选择"
             android:textColor="@color/color6_black_normal"
             android:textSize="16sp" />
