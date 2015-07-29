@@ -84,7 +84,7 @@ public class AlbumAdapter extends BaseAdapter {
 	}
 
 	private void loadImage(ImageView imageView, String url) {
-		Glide.with(mContext).load(url).error(R.drawable.ic_picture_loadfailed)
+		Glide.with(mContext).load(url).error(R.drawable.ic_image_load_failed)
 				.into(imageView);
 	}
 
