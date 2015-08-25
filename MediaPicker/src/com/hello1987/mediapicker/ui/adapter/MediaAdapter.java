@@ -23,7 +23,7 @@ import com.hello1987.mediapicker.util.ByteUtil;
 
 public class MediaAdapter extends BaseAdapter {
 
-	private static final int VIEW_TYPE_COUNT = 11;
+	private static final int VIEW_TYPE_COUNT = 2;
 
 	public static final int TYPE_CAMERA = 0;// 相机
 	public static final int TYPE_MEDIA = 1;// 媒体
